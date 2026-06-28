@@ -1,0 +1,31 @@
+# Apache, PHP, MySQL
+services:
+  webserver:
+    container_name: webserver
+    build:
+      dockerfile: ./docker/WebServer
+    volumes:
+      - ./www:/home/pri/www # Apache document folder
+    ports:
+      - 8080:80 # http
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: pri
+      MYSQL_USER: pri
+      MYSQL_PASSWORD: pwd
+      MYSQL_ROOT_PASSWORD: rootpwd
+    ports:
+      - "3306:3306"
+    volumes:
+      # database initialization
+      - ./init-db:/docker-entrypoint-initdb.d/
+      # persistent database data
+      - mysql_data:/var/lib/mysql/
+
+volumes:
+  mysql_data:
