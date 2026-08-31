@@ -1,4 +1,1 @@
-create table test (
-  id  serial primary key,
-  val text
-);
+-- Obsolete PostgreSQL template file (unused in MySQL)

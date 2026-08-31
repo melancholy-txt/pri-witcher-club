@@ -1,1 +1,1 @@
-create extension pgcrypto;
+-- Obsolete PostgreSQL template file (unused in MySQL)
